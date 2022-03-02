@@ -21,24 +21,27 @@ function App() {
       .query({
         query: gql`
           query GetRates {
-            rates(currency: "USD") {
+            rates(currency: "GHS") {
               currency
+              rate
             }
           }
         `,
       })
       .then((result) => {
-        // console.log(result)
+        console.log(result)
         setData(result.data.rates)
       })
   })
 
   return (
     <>
-      <h1>Currencies</h1>
       <div className='App'>
-        {data.map((rate, i) => (
-          <p key={i}>{rate.currency}</p>
+        <h2>My first Apollo app 🚀</h2>
+        {data.map((item, i) => (
+          <p key={i}>
+            {item.currency}-{item.rate}
+          </p>
         ))}
       </div>
     </>
